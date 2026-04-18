@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<!--
+  COMPOUND RADAR — COMING SOON LANDING PAGE
+  ==========================================
+  Formspree form ID is already set to: mojywvde
+  To change it, search for "mojywvde" and replace with your new form ID.
+
+  TO GO LIVE:
+  1. Push this /site directory to GitHub (main branch).
+  2. Enable GitHub Pages: Settings → Pages → Source: main / /site
+     (or move these files to the repo root and set Source: main / root).
+  3. Point compoundradar.com DNS to GitHub Pages:
+     A records:  185.199.108.153 / .109.153 / .110.153 / .111.153
+     CNAME www → <your-user>.github.io
+     Docs: https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site
+  4. Confirm the Formspree activation email and verify Reply-To is wired to the email field.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Compound Radar — Peptide compliance for 503A pharmacies</title>
+  <meta name="description" content="Compound Radar gives 503A compounding pharmacies a live dashboard of what's compoundable, automated FDA warning letter monitoring, and audit-ready sourcing files on demand." />
+
+  <!-- Open Graph -->
+  <meta property="og:type"        content="website" />
+  <meta property="og:url"         content="https://compoundradar.com/" />
+  <meta property="og:title"       content="Compound Radar — Peptide compliance for 503A pharmacies" />
+  <meta property="og:description" content="Real-time 503A compoundable status, supplier monitoring, and one-click audit-ready compliance files. Built for pharmacists-in-charge." />
+
+  <!-- Favicon: inline SVG radar-dot, deep teal on off-white -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23FAFAF7'/><circle cx='16' cy='16' r='12' fill='none' stroke='%230D5C63' stroke-width='1.5' opacity='.3'/><circle cx='16' cy='16' r='7' fill='none' stroke='%230D5C63' stroke-width='1.5' opacity='.6'/><circle cx='16' cy='16' r='3' fill='%230D5C63'/><line x1='16' y1='16' x2='24' y2='8' stroke='%230D5C63' stroke-width='1.5' opacity='.75'/></svg>" />
+
+  <style>
+    /* ── Reset & base ──────────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FAFAF7;   /* warm off-white */
+      --surface:   #FFFFFF;   /* inputs / cards */
+      --ink:       #1A1F1E;   /* deep charcoal body text */
+      --muted:     #5A6B68;   /* captions, labels, footer */
+      --accent:    #0D5C63;   /* deep teal */
+      --accent-hi: #0A4A50;   /* hover */
+      --accent-lo: rgba(13,92,99,.10);
+      --rule:      #E3E0D8;   /* hairline borders */
+      --max-body:  680px;
+      --max-hero:  820px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Inter",
+                   "Segoe UI", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Typography families */
+    .serif {
+      font-family: ui-serif, "Charter", "Iowan Old Style", "Iowan Old Style BT",
+                   Georgia, "Times New Roman", serif;
+    }
+
+    /* ── Layout ────────────────────────────────────────────────────────── */
+    .wrap {
+      max-width: var(--max-body);
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+    .wrap--hero { max-width: var(--max-hero); }
+
+    /* ── Focus visible ─────────────────────────────────────────────────── */
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ── Header ────────────────────────────────────────────────────────── */
+    header {
+      padding: 32px 0 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .brand svg { display: block; }
+
+    .wordmark {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--accent);
+    }
+
+    /* ── Hero ──────────────────────────────────────────────────────────── */
+    .hero {
+      padding: 84px 0 64px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--accent-lo);
+    }
+
+    h1 {
+      font-size: clamp(36px, 5.6vw, 56px);
+      font-weight: 400;     /* serif looks best at regular */
+      line-height: 1.1;
+      letter-spacing: -.015em;
+      color: var(--ink);
+      margin-bottom: 28px;
+      max-width: 780px;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .subhead {
+      font-size: 19px;
+      line-height: 1.65;
+      color: var(--ink);
+      opacity: .82;
+      max-width: 640px;
+    }
+
+    /* ── Rule ──────────────────────────────────────────────────────────── */
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 0;
+    }
+
+    /* ── Feature strip ─────────────────────────────────────────────────── */
+    .features {
+      padding: 56px 0 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      color: var(--muted);
+      text-transform: uppercase;
+      margin-bottom: 28px;
+    }
+
+    .feature-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      font-size: 17px;
+      line-height: 1.55;
+      color: var(--ink);
+    }
+
+    .feature-num {
+      flex-shrink: 0;
+      font-family: ui-serif, "Charter", Georgia, serif;
+      font-style: italic;
+      font-size: 15px;
+      color: var(--accent);
+      min-width: 22px;
+      padding-top: 2px;
+      letter-spacing: .02em;
+    }
+
+    /* ── Form section ──────────────────────────────────────────────────── */
+    .form-section {
+      padding: 64px 0 80px;
+    }
+
+    .form-section h2 {
+      font-family: ui-serif, "Charter", Georgia, serif;
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -.01em;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .form-sub {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 36px;
+      max-width: 540px;
+      line-height: 1.6;
+    }
+
+    .inquiry-form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    @media (max-width: 540px) {
+      .field-row { grid-template-columns: 1fr; gap: 20px; }
+    }
+
+    label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    label .optional {
+      font-weight: 400;
+      text-transform: none;
+      letter-spacing: 0;
+      color: var(--muted);
+      opacity: .7;
+      margin-left: 4px;
+    }
+
+    input, textarea {
+      background: var(--surface);
+      border: 1px solid var(--rule);
+      border-radius: 2px;
+      color: var(--ink);
+      font-family: inherit;
+      font-size: 16px;
+      line-height: 1.5;
+      padding: 12px 14px;
+      width: 100%;
+      transition: border-color .15s ease, box-shadow .15s ease;
+      -webkit-appearance: none;
+    }
+
+    input::placeholder, textarea::placeholder {
+      color: var(--muted);
+      opacity: .55;
+    }
+
+    input:hover, textarea:hover {
+      border-color: #CFC8B8;
+    }
+
+    input:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px var(--accent-lo);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 104px;
+    }
+
+    /* honeypot — hidden from real users */
+    .hp { display: none !important; }
+
+    .submit-btn {
+      align-self: flex-start;
+      margin-top: 8px;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      border-radius: 2px;
+      color: var(--bg);
+      cursor: pointer;
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      padding: 14px 30px;
+      transition: background-color .15s ease, border-color .15s ease;
+    }
+
+    .submit-btn:hover,
+    .submit-btn:focus-visible {
+      background: var(--accent-hi);
+      border-color: var(--accent-hi);
+    }
+
+    /* ── Footer ────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 0 40px;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-contact {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .footer-contact:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent-lo);
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ── Header ──────────────────────────────────────────────────────── -->
+  <header>
+    <div class="wrap">
+      <a href="/" class="brand" aria-label="Compound Radar — home">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="#0D5C63" stroke-width="1.25" opacity=".3"/>
+          <circle cx="12" cy="12" r="6"  fill="none" stroke="#0D5C63" stroke-width="1.25" opacity=".6"/>
+          <circle cx="12" cy="12" r="2"  fill="#0D5C63"/>
+          <line x1="12" y1="12" x2="20" y2="5" stroke="#0D5C63" stroke-width="1.25" opacity=".75"/>
+        </svg>
+        <span class="wordmark">Compound Radar</span>
+      </a>
+    </div>
+  </header>
+
+  <!-- ── Main ────────────────────────────────────────────────────────── -->
+  <main>
+
+    <!-- Hero -->
+    <section class="hero">
+      <div class="wrap wrap--hero">
+        <span class="eyebrow">Coming soon</span>
+        <h1 class="serif">
+          Peptide compliance,<br />
+          <em>in real time.</em>
+        </h1>
+        <p class="subhead">
+          Compound Radar gives 503A compounding pharmacies a live dashboard of what's
+          compoundable, automated monitoring of FDA warning letters and API supplier
+          status, and audit-ready sourcing files on demand. Built for pharmacists-in-charge
+          and compliance teams who are tired of chasing regulatory changes across a dozen PDFs.
+        </p>
+      </div>
+    </section>
+
+    <div class="wrap"><hr /></div>
+
+    <!-- Feature strip -->
+    <section class="features" aria-label="What you get">
+      <div class="wrap">
+        <p class="section-label">What you get</p>
+        <ul class="feature-list">
+          <li><span class="feature-num">i.</span>   Real-time 503A compoundable status for every peptide.</li>
+          <li><span class="feature-num">ii.</span>  Automated warning-letter and API supplier monitoring.</li>
+          <li><span class="feature-num">iii.</span> One-click audit-ready compliance file — ready for any state board inspection.</li>
+        </ul>
+      </div>
+    </section>
+
+    <div class="wrap"><hr /></div>
+
+    <!-- Inquiry form -->
+    <section class="form-section">
+      <div class="wrap">
+        <p class="section-label">Design-partner pilot</p>
+        <h2>Get early access.</h2>
+        <p class="form-sub">
+          We're running a limited design-partner pilot. Tell us about your practice
+          and we'll be in touch.
+        </p>
+
+        <!--
+          Formspree form ID: mojywvde
+          To change: replace "mojywvde" in the action URL below.
+        -->
+        <form
+          class="inquiry-form"
+          action="https://formspree.io/f/mojywvde"
+          method="POST"
+        >
+          <!-- Redirect after submit -->
+          <input type="hidden" name="_next" value="https://compoundradar.com/thanks.html" />
+
+          <!-- Honeypot spam protection (Formspree-native) -->
+          <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+
+          <div class="field-row">
+            <div class="field">
+              <label for="name">Name</label>
+              <input type="text" id="name" name="name" required autocomplete="name" placeholder="Jane Smith" />
+            </div>
+            <div class="field">
+              <label for="email">Work email</label>
+              <input type="email" id="email" name="email" required autocomplete="email" placeholder="jane@rxpharmacy.com" />
+            </div>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="pharmacy">Pharmacy / company</label>
+              <input type="text" id="pharmacy" name="pharmacy" required placeholder="Acme Compounding Pharmacy" />
+            </div>
+            <div class="field">
+              <label for="role">Role <span class="optional">(optional)</span></label>
+              <input type="text" id="role" name="role" placeholder="Pharmacist-in-charge, Owner…" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Message <span class="optional">(optional)</span></label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="What's your biggest peptide compliance headache right now?"
+            ></textarea>
+          </div>
+
+          <button type="submit" class="submit-btn">Request access</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ──────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span>compoundradar.com &nbsp;·&nbsp; © 2026 Compound Radar</span>
+        <a class="footer-contact" href="mailto:theresa@roomserviceai.com">theresa@roomserviceai.com</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
