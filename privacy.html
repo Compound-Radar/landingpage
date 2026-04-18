@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy — Compound Radar</title>
+  <meta name="description" content="How Compound Radar handles information collected through its pre-launch inquiry form." />
+  <meta name="robots" content="index,follow" />
+
+  <!-- Favicon: inline SVG radar-dot, deep teal on off-white -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23FAFAF7'/><circle cx='16' cy='16' r='12' fill='none' stroke='%230D5C63' stroke-width='1.5' opacity='.3'/><circle cx='16' cy='16' r='7' fill='none' stroke='%230D5C63' stroke-width='1.5' opacity='.6'/><circle cx='16' cy='16' r='3' fill='%230D5C63'/><line x1='16' y1='16' x2='24' y2='8' stroke='%230D5C63' stroke-width='1.5' opacity='.75'/></svg>" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:        #FAFAF7;
+      --ink:       #1A1F1E;
+      --muted:     #5A6B68;
+      --accent:    #0D5C63;
+      --accent-lo: rgba(13,92,99,.10);
+      --rule:      #E3E0D8;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Inter",
+                   "Segoe UI", system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.65;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    .serif {
+      font-family: ui-serif, "Charter", "Iowan Old Style", Georgia,
+                   "Times New Roman", serif;
+    }
+
+    .wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 28px;
+      width: 100%;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    a { color: var(--accent); }
+    a:hover { text-decoration: underline; }
+
+    header {
+      padding: 32px 0 28px;
+      border-bottom: 1px solid var(--rule);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--accent);
+    }
+
+    .wordmark {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: .04em;
+      color: var(--accent);
+    }
+
+    main {
+      flex: 1;
+      padding: 64px 0 72px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      color: var(--accent);
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      padding-bottom: 6px;
+      border-bottom: 1px solid var(--accent-lo);
+    }
+
+    h1 {
+      font-size: clamp(32px, 4.5vw, 44px);
+      font-weight: 400;
+      line-height: 1.15;
+      letter-spacing: -.015em;
+      color: var(--ink);
+      margin-bottom: 10px;
+    }
+
+    .meta {
+      font-size: 14px;
+      color: var(--muted);
+      margin-bottom: 36px;
+    }
+
+    h2 {
+      font-family: ui-serif, "Charter", Georgia, serif;
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: -.005em;
+      color: var(--ink);
+      margin: 36px 0 12px;
+    }
+
+    p {
+      color: var(--ink);
+      opacity: .88;
+      margin-bottom: 16px;
+    }
+
+    ul {
+      margin: 4px 0 16px 22px;
+      color: var(--ink);
+      opacity: .88;
+    }
+
+    ul li { margin-bottom: 6px; }
+
+    .callout {
+      border-left: 2px solid var(--accent-lo);
+      padding: 6px 0 6px 18px;
+      margin: 24px 0 32px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 40px 0 28px;
+    }
+
+    footer {
+      border-top: 1px solid var(--rule);
+      padding: 32px 0 40px;
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-links { display: flex; gap: 18px; }
+
+    .footer-link {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .footer-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent-lo);
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="wrap">
+      <a href="/" class="brand" aria-label="Compound Radar — home">
+        <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="12" cy="12" r="10" fill="none" stroke="#0D5C63" stroke-width="1.25" opacity=".3"/>
+          <circle cx="12" cy="12" r="6"  fill="none" stroke="#0D5C63" stroke-width="1.25" opacity=".6"/>
+          <circle cx="12" cy="12" r="2"  fill="#0D5C63"/>
+          <line x1="12" y1="12" x2="20" y2="5" stroke="#0D5C63" stroke-width="1.25" opacity=".75"/>
+        </svg>
+        <span class="wordmark">Compound Radar</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <span class="eyebrow">Privacy</span>
+      <h1 class="serif">Privacy notice.</h1>
+      <p class="meta">Last updated: April 18, 2026</p>
+
+      <p>
+        This notice explains how Compound Radar handles information collected through
+        <a href="https://compoundradar.com">compoundradar.com</a> and the inquiry form
+        on this site.
+      </p>
+
+      <div class="callout">
+        Compound Radar is in pre-launch product development. This notice covers the
+        landing page only. It does <strong>not</strong> cover a production SaaS product
+        — that will have its own privacy policy and, where applicable, a separate
+        business-associate agreement at launch.
+      </div>
+
+      <h2>What we collect</h2>
+      <p>When you submit the inquiry form, we collect the information you give us directly:</p>
+      <ul>
+        <li>Name</li>
+        <li>Work email</li>
+        <li>Pharmacy or company name</li>
+        <li>Role (optional)</li>
+        <li>Any message you include</li>
+      </ul>
+      <p>
+        We do not use website analytics, advertising pixels, or third-party trackers.
+        No cookies are set by this site.
+      </p>
+
+      <h2>Why we collect it</h2>
+      <p>
+        To contact you about the design-partner pilot and to understand the peptide
+        compliance needs of the pharmacies we're building for. That's it — no marketing
+        lists, no onward selling.
+      </p>
+
+      <h2>How it's processed</h2>
+      <p>
+        Form submissions are handled by Formspree (our form processor) and delivered
+        to our email inbox. A copy of each submission is retained in Formspree and in
+        our email records.
+      </p>
+
+      <h2>How long we keep it</h2>
+      <p>
+        As long as is reasonable for our early-customer discovery work. You can request
+        deletion at any time — see below.
+      </p>
+
+      <h2>Who we share it with</h2>
+      <p>
+        We do not sell your information, and we do not share it with third parties for
+        marketing. The only third parties that touch your submission are:
+      </p>
+      <ul>
+        <li>Formspree — form processing</li>
+        <li>Our email provider — inbox storage</li>
+      </ul>
+
+      <h2>Your rights</h2>
+      <p>You can ask us to:</p>
+      <ul>
+        <li>Show you what we have on file for you</li>
+        <li>Correct or update it</li>
+        <li>Delete it</li>
+      </ul>
+      <p>
+        Email
+        <a href="mailto:theresa@compoundradar.com?subject=Privacy%20request">theresa@compoundradar.com</a>
+        with the subject line "Privacy request" and we'll respond within a reasonable
+        period.
+      </p>
+
+      <h2>Changes to this notice</h2>
+      <p>
+        If we update this notice, the "Last updated" date above will change and the
+        latest version will always be at
+        <a href="https://compoundradar.com/privacy.html">compoundradar.com/privacy.html</a>.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this notice or about Compound Radar generally —
+        <a href="mailto:theresa@compoundradar.com">theresa@compoundradar.com</a>.
+      </p>
+
+      <hr />
+      <p><a href="/">← Back to compoundradar.com</a></p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="footer-inner">
+        <span>compoundradar.com &nbsp;·&nbsp; © 2026 Compound Radar</span>
+        <div class="footer-links">
+          <a class="footer-link" href="/privacy.html">Privacy</a>
+          <a class="footer-link" href="mailto:theresa@compoundradar.com">theresa@compoundradar.com</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

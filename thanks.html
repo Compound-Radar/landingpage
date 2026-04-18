@@ -131,6 +131,25 @@
       font-size: 13px;
       color: var(--muted);
     }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .footer-link {
+      color: var(--muted);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: color .15s, border-color .15s;
+    }
+    .footer-link:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent-lo);
+    }
   </style>
 </head>
 <body>
@@ -163,7 +182,10 @@
 
   <footer>
     <div class="wrap">
-      <span>compoundradar.com &nbsp;·&nbsp; © 2026 Compound Radar</span>
+      <div class="footer-inner">
+        <span>compoundradar.com &nbsp;·&nbsp; © 2026 Compound Radar</span>
+        <a class="footer-link" href="/privacy.html">Privacy</a>
+      </div>
     </div>
   </footer>
 
